@@ -10,12 +10,17 @@ app.use(express.json());
 
 // BUG #1: Wrong default password - doesn't match docker-compose!
 const pool = new Pool({
-   user: process.env.DB_USER || 'myuser',
-   host: process.env.DB_HOST || '127.0.0.1',
-   database: process.env.DB_NAME || 'mydatabase',
-   password: process.env.DB_PASSWORD || 'mypass',
+   user: process.env.DB_USER,
+   host: process.env.DB_HOST,
+   database: process.env.DB_NAME,
+   password: process.env.DB_PASSWORD,
    port: process.env.DB_PORT || 5432,
 });
+
+// Check database connection configuration
+if (!process.env.DB_USER || !process.env.DB_PASSWORD) {
+   console.warn('WARNING: Database credentials (DB_USER/DB_PASSWORD) are not set in environment variables.');
+}
 
 app.get('/health', (req, res) => {
    res.json({ status: 'healthy', version: '1.0.0' });
