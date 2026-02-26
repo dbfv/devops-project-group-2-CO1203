@@ -63,6 +63,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          context: . # Build from the Dockerfile in the root
-          push: true # Actually push the image
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/devops-project-group-2-CO1203:latest
+          context: ./backend # Build from the backend directory
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/devops-project-group-2-co1203:latest
