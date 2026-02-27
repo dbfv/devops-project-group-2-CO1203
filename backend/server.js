@@ -38,7 +38,7 @@ app.get('/api/todos', async (req, res) => {
 
 // BUG #2: Missing validation - will cause test to fail!
 // STUDENT TODO: Add validation to reject empty title
-app.post('/api/todos', async (req, res) => {
+app.post('api/todos', async (req, res) => {
    try {
       const { title, completed = false } = req.body;
 
